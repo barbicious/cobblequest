@@ -2,6 +2,10 @@
 
 out vec4 oColor;
 
+in vec2 vUv;
+
+uniform sampler2D textureSampler;
+
 void main() {
-    oColor = vec4(0.4, 0.3, 0.2, 1.0);
+    oColor = texture2D(textureSampler, vUv);
 }

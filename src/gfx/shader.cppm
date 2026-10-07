@@ -16,17 +16,14 @@ export namespace gfx {
     class Shader : public IBindable {
     public:
         Shader(const std::filesystem::path& vsPath, const std::filesystem::path& fsPath) {
-            const std::expected vertexShader{compileShader(vsPath, GL_VERTEX_SHADER)};
-
-            if (vertexShader.has_value()) {
+            if (const std::expected vertexShader{compileShader(vsPath, GL_VERTEX_SHADER)}; vertexShader.has_value()) {
                 glAttachShader(id, vertexShader.value());
                 glDeleteShader(vertexShader.value());
             } else {
                 std::cerr << vertexShader.error() << std::endl;
             }
 
-            const std::expected fragmentShader{compileShader(fsPath, GL_FRAGMENT_SHADER)};
-            if (fragmentShader.has_value()) {
+            if (const std::expected fragmentShader{compileShader(fsPath, GL_FRAGMENT_SHADER)}; fragmentShader.has_value()) {
                 glAttachShader(id, fragmentShader.value());
                 glDeleteShader(fragmentShader.value());
             } else {

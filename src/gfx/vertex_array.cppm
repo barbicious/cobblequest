@@ -15,6 +15,13 @@ export namespace gfx {
             glBindVertexArray(id);
         }
 
+        ~VertexArray() override {
+            glDeleteVertexArrays(1, &id);
+        }
+
+        VertexArray(const VertexArray&) = delete;
+        VertexArray& operator=(const VertexArray&) = delete;
+
         void bind() override {
             glBindVertexArray(id);
         }

@@ -19,6 +19,7 @@ add_executable(cobblequest src/main.cpp vendor/glad/src/glad.c
         src/gfx/buffer.cppm
         src/gfx/vertex_array.cppm
         src/gfx/vertex_buffer.cppm
+        src/state.cppm
 )
 
 file(GLOB_RECURSE glob_modules
@@ -33,15 +34,12 @@ target_sources(cobblequest PRIVATE
         ${glob_modules}
 )
 
-add_custom_target(copy_resources ALL
+add_custom_command(TARGET cobblequest POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
         "${CMAKE_CURRENT_SOURCE_DIR}/res"
         "$<TARGET_FILE_DIR:cobblequest>/res"
-        DEPENDS cobblequest
 )
-
-
 
 target_link_libraries(cobblequest PRIVATE glfw)
 
-target_include_directories(cobblequest PRIVATE vendor/glad/include)
+target_include_directories(cobblequest PRIVATE vendor/glad/include vendor)

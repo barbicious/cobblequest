@@ -20,6 +20,9 @@ export namespace gfx {
 
         virtual ~Buffer() = default;
 
+        Buffer(const Buffer&) = delete;
+        Buffer& operator=(const Buffer&) = delete;
+
         virtual void enableAttrib(u32 index, i32 size, i32 stride, u32 offset) = 0;
 
     private:

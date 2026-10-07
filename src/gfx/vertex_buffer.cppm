@@ -18,7 +18,7 @@ export namespace gfx {
 
         void enableAttrib(u32 index, i32 size, i32 stride, u32 offset) override {
             glEnableVertexAttribArray(index);
-            glVertexAttribPointer(index, size, GL_FLOAT, false, stride * static_cast<i32>(sizeof(f32)), reinterpret_cast<void*>(offset * sizeof(f32)));
+            glVertexAttribPointer(index, size , GL_FLOAT, false, stride * static_cast<i32>(sizeof(f32)), reinterpret_cast<void*>(offset * sizeof(f32)));
         }
     };
 }
